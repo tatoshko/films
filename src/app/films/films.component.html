@@ -1,0 +1,63 @@
+<app-search (select)="onAddToLibrary($event)"></app-search>
+
+<div class="library">
+    <ng-container *ngIf="films && films.length > 0; else empty">
+        <form>
+            <mat-form-field>
+                <input matInput placeholder="Search by library" [formControl]="searchCtrl" />
+            </mat-form-field>
+        </form>
+
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let film of filtered | async">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <img class="example-option-img" aria-hidden [src]="film.Poster">
+                    </mat-panel-title>
+                    <mat-panel-description>{{film.Title}}</mat-panel-description>
+                    <button mat-icon-button color="warn" (click)="onDeleteFromLibrary(film)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-expansion-panel-header>
+
+                <img class="example-option-img" aria-hidden [src]="film.Poster">
+                <ul>
+                    <li>
+                        {{film.Plot}}
+                    </li>
+                    <li><span>imdbID</span> <a href="https://www.imdb.com/title/{{film.imdbID}}" target="_blank">{{film.imdbID}}</a></li>
+
+                    <li><span>Year</span> {{film.Year}}</li>
+                    <li><span>Rated</span> {{film.Rated}}</li>
+                    <li><span>Released</span> {{film.Released}}</li>
+                    <li><span>Runtime</span> {{film.Runtime}}</li>
+
+                    <li><span>Genre</span> {{film.Genre}}</li>
+
+                    <li><span>Director</span> {{film.Director}}</li>
+                    <li><span>Writer</span> {{film.Writer}}</li>
+                    <li><span>Actors</span> {{film.Actors}}</li>
+
+                    <li><span>Language</span> {{film.Language}}</li>
+                    <li><span>Country</span> {{film.Country}}</li>
+
+                    <li><span>Awards</span> {{film.Awards}}</li>
+                    <li><span>Metascore</span> {{film.Metascore}}</li>
+                    <li><span>imdbRating</span> {{film.imdbRating}}</li>
+                    <li><span>imdbVotes</span> {{film.imdbVotes}}</li>
+                    <li><span>Type</span> {{film.Type}}</li>
+                    <li><span>DVD</span> {{film.DVD}}</li>
+                    <li><span>BoxOffice</span> {{film.BoxOffice}}</li>
+                    <li><span>Production</span> {{film.Production}}</li>
+                    <li *ngIf="film.Website !== 'N/A'">
+                        <span>Website</span> <a [href]="film.Website" target="_blank">{{film.Website}}</a>
+                    </li>
+                </ul>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </ng-container>
+</div>
+
+<ng-template #empty>
+    <h4 class="mat-subheading-2">No films in library</h4>
+</ng-template>

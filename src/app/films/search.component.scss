@@ -1,0 +1,58 @@
+@import '../../styles.scss';
+
+$primary: map-get($theme, primary);
+$contrast: map-get($primary, contrast);
+
+:host {
+    flex: 0 0 30rem;
+    background: mat-color($primary, 50);
+    color: mat-color($contrast, 50);
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    /deep/ {
+        form {
+            flex: 0 0 auto;
+            padding: 0 16px;
+            margin: 8px 0 0 0;
+
+            mat-form-field {
+                display: block;
+            }
+        }
+
+        .search-paging {
+            flex: 0 0 auto;
+            padding: 0 16px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: mat-color($primary, 100);
+        }
+
+        .search-results {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 0 16px;
+            margin: 8px 0;
+
+            .result {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 8px;
+
+                img {
+                    width: 30px;
+                }
+
+                span {
+                    margin: 0 0 0 8px;
+                    flex: 1 1 auto;
+                }
+            }
+        }
+    }
+}

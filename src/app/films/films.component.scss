@@ -1,0 +1,68 @@
+@import '../../styles.scss';
+
+$primary: map-get($theme, primary);
+$contrast: map-get($primary, contrast);
+
+:host {
+    display: flex;
+    height: 100%;
+
+    /deep/ {
+        > .library {
+            flex: 1 1 auto;
+            height: 100vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+
+            display: flex;
+            flex-direction: column;
+
+            form {
+                margin: 8px 16px;
+                flex: 0 0 auto;
+            }
+
+            mat-accordion {
+                flex: 1 1 auto;
+                overflow-y: auto;
+                padding: 0 16px 16px;
+
+                mat-expansion-panel-header {
+                    .mat-content {
+                        align-items: center;
+                    }
+
+                    mat-panel-title {
+                        flex: 0 0 30px;
+                    }
+
+                    img {
+                        height: 30px;
+                    }
+                }
+
+                .mat-expansion-panel-body {
+                    display: flex;
+
+                    img {
+                        margin-right: 16px;
+                    }
+
+                    ul {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+
+                        li {
+                            span {
+                                display: inline-block;
+                                width: 120px;
+                                color: mat-color($mat-grey, A400);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+<form>
+    <mat-form-field>
+        <input matInput placeholder="Search by title or imdbID" [formControl]="searchCtrl">
+    </mat-form-field>
+</form>
+
+<mat-progress-bar [mode]="search ? 'indeterminate' : 'determinate'"></mat-progress-bar>
+
+<div class="search-paging" *ngIf="results?.totalResults; else empty">
+    <button mat-button (click)="onPrevPage()" [disabled]="currentPage <= 1">prev</button>
+    {{currentPage}} of {{totalPages}}
+    <button mat-button (click)="onNextPage()" [disabled]="currentPage >= totalPages">next</button>
+</div>
+
+<div class="search-results">
+    <div class="result" *ngFor="let film of results?.Search">
+        <img [src]="film.Poster" *ngIf="film.Poster !== 'N/A'" />
+        <span>{{film.Title}}</span>
+        <button mat-icon-button (click)="onSelect(film)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</div>
+
+<ng-template #empty>
+    <h4 *ngIf="results">No results</h4>
+</ng-template>
